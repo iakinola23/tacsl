@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="TacSL provides GPU-accelerated tactile simulation and optimized tools to train robust tactile-based policies.">
+  <meta name="keywords" content="Visuotactile simulation; Policy learning; Sim-to-real transfer.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TacSL: A Library for Visuotactile Sensor Simulation and Learning</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+   -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">TacSL: A Library for Visuotactile Sensor Simulation and Learning</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://research.nvidia.com/person/iretiayo-akinola">Iretiayo Akinola</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://research.nvidia.com/person/jie-xu">Jie Xu</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://research.nvidia.com/person/jan-carius">Jan Carius</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.nvidia.com/person/dieter-fox">Dieter Fox</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://research.nvidia.com/person/yashraj-narang">Yashraj Narang</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>NVIDIA Research</span>
+            <span class="author-block"><sup>2</sup>University of Washington,</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://iakinola23.github.io/tacsl/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://iakinola23.github.io/tacsl/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://iakinola23.github.io/tacsl/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="columns is-centered">
+        <div class="column">
+          <video id="teaser" autoplay muted loop playsinline width="100%">
+            <source src="./static/videos/teaser_tactile_insertion_in_the_dark.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="column">
+          <video id="teaser" autoplay muted loop playsinline width="100%">
+            <source src="./static/videos/teaser_peg_placement_policy_2x.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <h2 class="subtitle has-text-centered">
+        <span class="dnerf">TacSL</span> policies demonstrating robustness to physical disturbances and acute illumination changes.
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item teaser-insertion">
+          <video poster="" id="teaser-insertion" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_tactile_insertion_in_the_dark.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item teaser-placement">
+          <video poster="" id="teaser-placement" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/teaser_peg_placement_policy_2x.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <h2 class="subtitle has-text-centered">
+      <span class="dnerf">TacSL</span> policies demonstrating robustness to physical disturbances and acute illumination changes.
+    </h2>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            For both humans and robots, the sense of touch, known as tactile sensing, is critical for performing contact-rich manipulation tasks. 
+            Three key challenges in robotic tactile sensing are 1) interpreting sensor signals, 2) predicting sensor signals in novel scenarios, and
+             3) learning sensor-based policies. 
+             For visuotactile sensors, interpretation has been facilitated by their close relationship with vision sensors (e.g., RGB cameras). 
+             However, prediction is still difficult, as visuotactile sensors typically involve contact, deformation, illumination, and imaging,
+              all of which are expensive to simulate; in turn, policy learning has been challenging, 
+              as simulation cannot be leveraged for large-scale data collection.
+          </p>
+          <p>
+            We present <b>TacSL</b> (<em>taxel</em>), a library for GPU-based visuotactile sensor simulation and learning. 
+            <b>TacSL</b> can be used to simulate visuotactile images and extract contact-force distributions over 200&times; 
+            faster than the prior state-of-the-art, all within the widely-used Isaac Gym simulator. 
+            Furthermore, <b>TacSL</b> provides a learning toolkit containing multiple sensor models, contact-intensive training environments, 
+            and online/offline algorithms that can facilitate policy learning for sim-to-real applications.
+          </p>
+          <p>
+            On the algorithmic side, we introduce a novel online reinforcement-learning algorithm called asymmetric actor-critic distillation (AACD), 
+            designed to effectively and efficiently learn tactile-based policies in simulation that can transfer to the real world. 
+            Finally, we demonstrate the utility of our library and algorithms by evaluating the benefits of distillation and 
+            multimodal sensing for contact-rich manipulation tasks, and most critically, performing sim-to-real transfer.
+          </p>
+        </div>
+        <img src="static/images/TacSL_System_Figure.png" width="100%">
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Project Video</h2>
+        <div class="publication-video">
+          <iframe src="https://player.vimeo.com/video/836005050?h=4076666d68"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <!--Placement Policy Execution. -->
+    <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">Tactile-based Peg Placement</h2>
+        </div>
+        <div class="columns is-centered">
+
+          <!-- Placement in the dark. -->
+          <div class="column">
+            <div class="content">
+              <video id="place_peg_in_dark" autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/placement_robust_to_illumination.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!--/ Placement in the dark. -->
+
+
+          <!-- Placement with disturbance. -->
+          <div class="column">
+            <div class="content">
+              <video id="place_peg_in_dark" autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/peg_placement_with_disturbance.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <!--/ Placement with disturbance. -->
+        </div>
+
+      <!-- </div> -->
+    </div>
+    <!--/ Placement Policy Execution. -->
+
+
+    <!--Insertion Policy Execution. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Tactile-based Peg Insertion</h2>
+
+        <div class="content has-text-centered">
+          <video id="insertion-video"
+                 controls
+                 muted
+                 preload
+                 playsinline
+                 width="75%">
+            <source src="./static/videos/insertion_robust_to_illumination.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+    </div>
+    <!--/ Insertion Policy Execution. -->
+
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{akinola2024tacsl,
+  author    = {Akinola, Iretiayo and Xu, Jie and Carius, Jan and Fox, Dieter and Yashraj, Narang},
+  title     = {TacSL: A Library for Visuotactile Sensor Simulation and Learning},
+  journal   = {arXiv},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template borrowed from
+              <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
